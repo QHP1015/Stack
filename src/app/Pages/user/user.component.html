@@ -1,0 +1,28 @@
+<h1 nz-typography>用户</h1>
+<nz-divider></nz-divider>
+<nz-table #basicTable [nzData]="listOfData">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>email</th>
+        <th>id</th>
+        <th>state</th>
+        <th>domain</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.id }}</td>
+        <td>{{ data.state }}</td>
+        <td>{{ data.domain }}</td>
+        <td>
+            <a>编辑</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a>删除</a>
+        </td>
+    </tr>
+    </tbody>
+</nz-table>
