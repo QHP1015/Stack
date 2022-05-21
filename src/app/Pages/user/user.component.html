@@ -1,12 +1,13 @@
 <h1 nz-typography>用户</h1>
 <nz-divider></nz-divider>
-<nz-table #basicTable [nzData]="listOfData">
+<button nz-button nzType="primary" class="add-button" routerLink="addSubject">新增</button>
+<nz-table #basicTable [nzData]="users">
     <thead>
     <tr>
         <th>Name</th>
         <th>email</th>
         <th>id</th>
-        <th>state</th>
+        <th>enabled</th>
         <th>domain</th>
         <th>Action</th>
     </tr>
@@ -16,12 +17,12 @@
         <td>{{ data.name }}</td>
         <td>{{ data.email }}</td>
         <td>{{ data.id }}</td>
-        <td>{{ data.state }}</td>
-        <td>{{ data.domain }}</td>
+        <td>{{ data.enabled }}</td>
+        <td>{{ data.domain_id }}</td>
         <td>
-            <a>编辑</a>
+            <a >编辑</a>
             <nz-divider nzType="vertical"></nz-divider>
-            <a>删除</a>
+            <a nz-popconfirm nzTitle="确定要删除吗?" (click)="delete(data.id)">删除</a>
         </td>
     </tr>
     </tbody>

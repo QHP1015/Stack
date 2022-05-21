@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../service/user.service";
 
 
-interface Person {
+interface User {
     id: string;
     name: string;
-    email: string;
-    state: boolean;
-    domain: string;
+    email?: string;
+    enabled: boolean;
+    domain_id: string;
 }
 
 @Component({
@@ -16,35 +17,27 @@ interface Person {
 })
 
 export class UserComponent implements OnInit {
+    users:User[] = [];
 
-
-    constructor() {
+    constructor(private userService: UserService) {
     }
 
     ngOnInit(): void {
+        this.searchData();
     }
 
-    listOfData: Person[] = [
-        {
-            id: '2dd5b88b53e3465ab6da9041bac1a80d',
-            name: 'John Brown',
-            email: '2439462872@qq.com',
-            state: true,
-            domain: 'default'
-        },
-        {
-            id: '2',
-            name: 'Jim Green',
-            email: '2439462872@qq.com',
-            state: true,
-            domain: 'default'
-        },
-        {
-            id: '3',
-            name: 'Joe Black',
-            email: '2439462872@qq.com',
-            state: true,
-            domain: 'default'
-        }
-    ];
+    searchData(reset: boolean = false): void {
+        this.userService.getUsers().subscribe(result => this.onSuccess(result));
+    }
+
+    onSuccess(result: any) {
+        console.log('result: ' + JSON.stringify(result));
+        const data = result.data;
+        this.users = data;
+    }
+
+    delete(id: string): void {
+        this.userService.deleteUser(id).subscribe(result => this.searchData());
+    }
+
 }

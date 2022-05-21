@@ -8,7 +8,7 @@ import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -23,6 +23,12 @@ import { LoginComponent } from './login/login.component';
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
+import { RegisterComponent } from './register/register.component';
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzTypographyModule} from "ng-zorro-antd/typography";
+import {MyInterceptor} from "./myinterceptor";
+import { UserFormComponent } from './Pages/user/user-form/user-form.component';
+import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
 
 registerLocaleData(zh);
 
@@ -32,7 +38,9 @@ registerLocaleData(zh);
     HomeComponent,
     IndexComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    UserFormComponent
   ],
     imports: [
         BrowserModule,
@@ -49,9 +57,12 @@ registerLocaleData(zh);
         ReactiveFormsModule,
         NzFormModule,
         NzInputModule,
-        NzCheckboxModule
+        NzCheckboxModule,
+        NzSelectModule,
+        NzTypographyModule,
+        NzPageHeaderModule,
     ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN },{ provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

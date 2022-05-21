@@ -1,0 +1,54 @@
+<div class="register">
+    <h1 nz-typography>注册</h1>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-label
+                [nzSm]="6"
+                [nzXs]="24"
+                nzFor="nickname"
+                nzRequired
+                nzTooltipTitle="你想输入的用户名"
+            >
+                <span>用户名</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="请输入你的用户名!">
+                <input nz-input id="nickname" formControlName="nickname"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">邮箱</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="你输入的不是一个邮箱!">
+                <input nz-input formControlName="email" id="email"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>密码</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="请输入密码!">
+                <input
+                    nz-input
+                    type="password"
+                    id="password"
+                    formControlName="password"
+                    (ngModelChange)="updateConfirmValidator()"
+                />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>确认密码</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+                <input nz-input type="password" formControlName="checkPassword" id="checkPassword"/>
+                <ng-template #errorTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">请确认你的密码!</ng-container>
+                    <ng-container *ngIf="control.hasError('confirm')">
+                        两次输入的密码不一致！
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-are">
+            <nz-form-control [nzSpan]="14" [nzOffset]="6">
+                <button nz-button nzType="primary" >Register</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</div>
