@@ -24,7 +24,6 @@ export class MyInterceptor implements HttpInterceptor {
         // 实现不拦截的方式：1. 指定接口不拦截  2. 判断本地sessionStorage
         if (!req.url.includes('login' || 'register')) {
             const token:any = sessionStorage.getItem('token');
-            const username = sessionStorage.getItem('username');
             console.log(token);
             authReq = req.clone({setHeaders: {token}});
             return next.handle(authReq).pipe(
