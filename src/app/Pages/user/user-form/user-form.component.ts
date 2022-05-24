@@ -1,15 +1,29 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../../service/user.service";
+import {NzNotificationService} from 'ng-zorro-antd/notification';
 
 @Component({
-    selector: 'app-user-form',
+    selector: 'app-user-form' && 'nz-demo-notification-with-icon',
     templateUrl: './user-form.component.html',
     styleUrls: ['./user-form.component.less']
 })
 export class UserFormComponent implements OnInit {
     title = '新增用户';
     userForm !: FormGroup;
+
+    createNotification(type: string): void {
+        type === 'success' ?
+            this.notification.create(
+                type,
+                '添加成功',
+                ''
+            ) : this.notification.create(
+                type,
+                '添加失败',
+                ''
+            )
+    }
 
     submitForm(): void {
         for (const i in this.userForm.controls) {
@@ -19,18 +33,25 @@ export class UserFormComponent implements OnInit {
                 return;
             }
         }
-        this.userService.addUser(this.userForm.controls.username.value, this.userForm.controls.password.value,)
+        console.log(123)
+        this.userService.addUser(this.userForm.value.username, this.userForm.value.password).subscribe(status => this.onSuccess(status))
     }
 
-    constructor(private fb: FormBuilder, private userService: UserService,) {
+    onSuccess(statue: number) {
+        if (statue)
+            this.createNotification('success');
+        else
+            this.createNotification('error');
     }
 
-    updateConfirmValidator(): void {
-        /** wait for refresh value */
-        Promise.resolve().then(() => this.userForm.controls.checkPassword.updateValueAndValidity());
+    constructor(private fb: FormBuilder, private userService: UserService, private notification: NzNotificationService) {
     }
 
     ngOnInit(): void {
+        this.userForm = this.fb.group({
+            username: ['', [Validators.required]],
+            email: ['', [Validators.email]],
+            password: ['', [Validators.required]],
+        });
     }
-
 }

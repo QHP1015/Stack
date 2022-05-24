@@ -28,9 +28,12 @@ export class LoginComponent implements OnInit {
         console.log('result: ' + JSON.stringify(result));
         const data = result.data;
         const token = data.token;
-        const username = data.username
+        const username = data.username;
+        const id = data.id;
+
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('username', username);
+        sessionStorage.setItem('id', id);
         this.router.navigate(['/home/index']);
     }
 
@@ -40,6 +43,7 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void {
         sessionStorage.removeItem('token');
         sessionStorage.removeItem('username');
+        sessionStorage.removeItem('id');
         this.validateForm = this.fb.group({
             username: ['', [Validators.required]],
             password: ['', [Validators.required]],

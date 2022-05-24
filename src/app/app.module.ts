@@ -29,6 +29,10 @@ import {NzTypographyModule} from "ng-zorro-antd/typography";
 import {MyInterceptor} from "./myinterceptor";
 import { UserFormComponent } from './Pages/user/user-form/user-form.component';
 import {NzPageHeaderModule} from "ng-zorro-antd/page-header";
+import {NzNotificationService} from "ng-zorro-antd/notification";
+import { PersonComponent } from './Pages/person/person.component';
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 registerLocaleData(zh);
 
@@ -40,7 +44,8 @@ registerLocaleData(zh);
     UserComponent,
     LoginComponent,
     RegisterComponent,
-    UserFormComponent
+    UserFormComponent,
+    PersonComponent
   ],
     imports: [
         BrowserModule,
@@ -61,8 +66,10 @@ registerLocaleData(zh);
         NzSelectModule,
         NzTypographyModule,
         NzPageHeaderModule,
+        NzCardModule,
+        NzModalModule,
     ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN },{ provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN },{ provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },{provide: NzNotificationService}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

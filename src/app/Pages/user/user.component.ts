@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
-
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 interface User {
     id: string;
@@ -8,6 +8,7 @@ interface User {
     email?: string;
     enabled: boolean;
     domain_id: string;
+    password?: string;
 }
 
 @Component({
@@ -17,9 +18,19 @@ interface User {
 })
 
 export class UserComponent implements OnInit {
-    users:User[] = [];
+    users: User[] = [];
+    isVisible = false;
+    userForm !: FormGroup;
+    user = {
+        id: '',
+        name: '',
+        email: '',
+        password: '',
+        enabled: true,
+        domain_id: '',
+    };
 
-    constructor(private userService: UserService) {
+    constructor(private fb: FormBuilder, private userService: UserService) {
     }
 
     ngOnInit(): void {
@@ -31,13 +42,52 @@ export class UserComponent implements OnInit {
     }
 
     onSuccess(result: any) {
-        console.log('result: ' + JSON.stringify(result));
-        const data = result.data;
-        this.users = data;
+        if (result.status === 0) {
+            console.log('result: ' + JSON.stringify(result));
+            const data = result.data;
+            this.users = data;
+        } else {
+            alert('没有权限访问')
+        }
     }
 
     delete(id: string): void {
         this.userService.deleteUser(id).subscribe(result => this.searchData());
     }
+
+    showModal(data: any): void {
+        this.isVisible = true;
+        this.user = data
+        this.userForm = this.fb.group({
+            id: [this.user.id, [Validators.required]],
+            originalPassword: [this.user.password],
+            password: ['', [Validators.required]],
+        });
+    }
+
+    submitForm(): void {
+        for (const i in this.userForm.controls) {
+            this.userForm.controls[i].markAsDirty();
+            this.userForm.controls[i].updateValueAndValidity();
+            if (this.userForm.controls[i].invalid) {
+                return;
+            }
+        }
+        this.userService.modifyUser(this.user.id, this.userForm.value.originalPassword, this.userForm.value.password)
+            .subscribe(result => this.searchData());
+        console.log(123)
+    }
+
+    handleOk(): void {
+        console.log('Button ok clicked!');
+        this.submitForm();
+        this.isVisible = false;
+    }
+
+    handleCancel(): void {
+        console.log('Button cancel clicked!');
+        this.isVisible = false;
+    }
+
 
 }
