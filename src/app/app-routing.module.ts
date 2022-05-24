@@ -8,6 +8,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {UserFormComponent} from "./Pages/user/user-form/user-form.component";
 import {PersonComponent} from "./Pages/person/person.component";
+import {ComputeComponent} from "./Pages/compute/compute.component";
 // import * as path from "path";
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
         path: 'home', component: HomeComponent, canActivate: [LoginGuard], children: [
             // path: 'home', component: HomeComponent,  children: [
             {path: 'index', component: IndexComponent},
+            {path: 'compute', component: ComputeComponent},
             {path: 'person', component: PersonComponent},
             {path: 'user', component: UserComponent},
             {path: 'user/addUser', component: UserFormComponent}
