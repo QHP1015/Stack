@@ -12,8 +12,8 @@ interface Host {
   power: string;
   time: string;
 }
-// const BASE_URL = 'http://localhost:8080';
-const BASE_URL = 'https://mock.lbviic.com/mock/22';
+const BASE_URL = 'http://localhost:8080';
+// const BASE_URL = 'https://mock.lbviic.com/mock/22';
 
 @Component({
   selector: 'app-compute',

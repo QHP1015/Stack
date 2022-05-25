@@ -6,7 +6,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
     providedIn: 'root'
 })
 export class UserService {
-    userUrl = 'http://144.168.59.208:3000/mock/11/';
+    userUrl = 'http://localhost:8080/user';
 
     getUsers(): Observable<any> {
         return this.http.get(`${this.userUrl}getAll`,);
@@ -36,7 +36,7 @@ export class UserService {
     ): Observable<any> {
         const options = {username, email, id, password, enabled, domain_id};
         console.log(options);
-        return this.http.post(`${this.userUrl}modify`, options);
+        return this.http.post(`${this.userUrl}update`, options);
     }
 
     modifyPassword(

@@ -12,7 +12,7 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class LoginService {
-    private loginUrl = 'http://144.168.59.208:3000/mock/11/login';
+    private loginUrl = 'http://localhost:8080/login';
 
     constructor(private http: HttpClient) {
     }
