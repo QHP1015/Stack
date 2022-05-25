@@ -22,7 +22,32 @@
                 </label>
             </div>
             <div nz-col [nzSpan]="12">
-                <a class="login-form-forgot">忘记密码</a>
+                <a class="login-form-forgot" (click)="showModal()">重置密码</a>
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="修改用户" (nzOnCancel)="handleCancel()">
+                    <ng-container *nzModalContent>
+                        <form nz-form [formGroup]="passwordForm" (ngSubmit)="submitPasswordForm()">
+                            <nz-form-item>
+                                <nz-form-label>
+                                    用户名
+                                </nz-form-label>
+                                <nz-form-control >
+                                    <input nz-input id="username" formControlName="username"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label>邮箱</nz-form-label>
+                                <nz-form-control  nzErrorTip="你输入的不是一个邮箱!">
+                                    <input nz-input formControlName="email" id="email"/>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </form>
+                    </ng-container>
+                    <div *nzModalFooter>
+                        <button nz-button nzType="default" (click)="handleCancel()">取消</button>
+                        <button nz-button nzType="primary" (click)="handleOk()" type="submit">确认</button>
+                        <!--            <button nz-button [nzType]="'primary'"  htmlType="submit">添加用户</button>-->
+                    </div>
+                </nz-modal>
             </div>
         </div>
         <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" htmlType="submit">登录</button>

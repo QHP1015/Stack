@@ -60,8 +60,11 @@ export class UserComponent implements OnInit {
         this.user = data
         this.userForm = this.fb.group({
             id: [this.user.id, [Validators.required]],
-            originalPassword: [this.user.password],
-            password: ['', [Validators.required]],
+            username: [this.user.name],
+            password: ['123456', ],
+            email: [this.user.email, ],
+            enabled: [this.user.enabled,],
+            domain_id: [this.user.domain_id, ],
         });
     }
 
@@ -73,7 +76,8 @@ export class UserComponent implements OnInit {
                 return;
             }
         }
-        this.userService.modifyUser(this.user.id, this.userForm.value.originalPassword, this.userForm.value.password)
+        this.userService.modifyUser(this.userForm.value.username, this.userForm.value.email, this.userForm.value.id,
+            this.userForm.value.password, this.userForm.value.enabled, this.userForm.value.domain_id,)
             .subscribe(result => this.searchData());
         console.log(123)
     }

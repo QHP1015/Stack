@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
             }
         }
         console.log(123);
-        this.userService.addUser(this.validateForm.value.username, this.validateForm.value.password)
+        this.userService.addUser(this.validateForm.value.username, this.validateForm.value.password,this.validateForm.value.email)
             .subscribe(result => this.registerSuccess(result));
     }
 

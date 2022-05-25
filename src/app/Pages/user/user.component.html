@@ -33,25 +33,49 @@
                     <nz-form-label>
                         id
                     </nz-form-label>
-                    <nz-form-control >
+                    <nz-form-control>
                         <input nz-input id="id" formControlName="id"/>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
-                    <nz-form-label nzFor="password" >原密码</nz-form-label>
+                    <nz-form-label>
+                        用户名
+                    </nz-form-label>
+                    <nz-form-control>
+                        <input nz-input id="username" formControlName="username"/>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label>邮箱</nz-form-label>
+                    <nz-form-control  nzErrorTip="你输入的不是一个邮箱!">
+                        <input nz-input formControlName="email" id="email"/>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="password">密码</nz-form-label>
                     <nz-form-control nzErrorTip="请输入密码!">
                         <input
                             nz-input
                             type="password"
-                            id="originalPassword"
-                            formControlName="originalPassword"
+                            id="password"
+                            formControlName="password"
                         />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
-                    <nz-form-label nzFor="checkPassword" >新密码</nz-form-label>
-                    <nz-form-control >
-                        <input nz-input type="password" formControlName="password" id="password"/>
+                    <nz-form-label>
+                        用户名
+                    </nz-form-label>
+                    <nz-form-control>
+                        <input nz-input id="enabled" formControlName="enabled"/>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label>
+                        用户名
+                    </nz-form-label>
+                    <nz-form-control>
+                        <input nz-input id="domain_id" formControlName="domain_id"/>
                     </nz-form-control>
                 </nz-form-item>
             </form>

@@ -1,57 +1,57 @@
 <h1 nz-typography>云主机管理</h1>
 <button nz-button [nzType]="'primary'" (click)="showModal()"><span>新增</span></button>
-    <nz-modal [(nzVisible)]="isVisible" nzTitle="新增云主机" (nzOnCancel)="handleCancel()" (nzOnOk)="create()">
-      <ng-container *nzModalContent>
-        <input class="addInput" nz-input placeholder="名称" [(ngModel)]="newData.name" />
-        <nz-select [ngModel]="newData.mirror"  class="addInput">
-          <nz-option nzValue="cirros-0.3.3" nzLabel="cirros-0.3.3"></nz-option>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="新增云主机" (nzOnCancel)="handleCancel()" (nzOnOk)="create()">
+    <ng-container *nzModalContent>
+        <input class="addInput" nz-input placeholder="名称" [(ngModel)]="newData.name"/>
+        <nz-select [ngModel]="newData.mirror" class="addInput">
+            <nz-option nzValue="cirros-0.3.3" nzLabel="cirros-0.3.3"></nz-option>
         </nz-select>
-        <nz-select [ngModel]="newData.ip"  class="addInput">
-          <nz-option nzValue="provider" nzLabel="provider"></nz-option>
-          <nz-option nzValue="selfservice" nzLabel="selfservice"></nz-option>
+        <nz-select [ngModel]="newData.ip" class="addInput">
+            <nz-option nzValue="provider" nzLabel="provider"></nz-option>
+            <nz-option nzValue="selfservice" nzLabel="selfservice"></nz-option>
         </nz-select>
-        <nz-select [ngModel]="newData.size"  class="addInput">
-          <nz-option nzValue="m1.nano" nzLabel="m1.nano"></nz-option>
-          <nz-option nzValue="m1.tiny" nzLabel="m1.tiny"></nz-option>
+        <nz-select [ngModel]="newData.size" class="addInput">
+            <nz-option nzValue="m1.nano" nzLabel="m1.nano"></nz-option>
+            <nz-option nzValue="m1.tiny" nzLabel="m1.tiny"></nz-option>
         </nz-select>
-      </ng-container>
-    </nz-modal>
+    </ng-container>
+</nz-modal>
 <nz-divider></nz-divider>
 <nz-table #basicTable [nzData]="listOfData" [nzFrontPagination]="false">
-  <thead>
+    <thead>
     <tr>
-      <th>云主机名称</th>
-      <th>镜像名称</th>
-      <th>IP地址</th>
-      <th>大小</th>
-      <th>状态</th>
-      <th>可用域</th>
-      <th>电源状态</th>
-      <th>创建时间</th>
-      <th>动作</th>
+        <th>云主机名称</th>
+        <th>镜像名称</th>
+        <th>IP地址</th>
+        <th>大小</th>
+        <th>状态</th>
+        <th>可用域</th>
+        <th>电源状态</th>
+        <th>创建时间</th>
+        <th>动作</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr *ngFor="let data of basicTable.data">
-      <td>{{data.name}}</td>
-      <td>{{data.mirror}}</td>
-      <td>{{data.ip}}</td>
-      <td>{{data.size}}</td>
-      <td>{{data.status}}</td>
-      <td>{{data.domain}}</td>
-      <td>{{data.power}}</td>
-      <td>{{data.time}}</td>
-      <td>
-        <a (click)="start(data.id)">启动</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="suspend(data.id)">挂起</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="destroy(data.id)">删除</a>
-        <br>
-        <a (click)="stop(data.id)">关闭</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="resume(data.id)">恢复</a>
-      </td>
+        <td>{{data.name}}</td>
+        <td>{{data.mirror}}</td>
+        <td>{{data.ip}}</td>
+        <td>{{data.size}}</td>
+        <td>{{data.status}}</td>
+        <td>{{data.domain}}</td>
+        <td>{{data.power}}</td>
+        <td>{{data.time}}</td>
+        <td>
+            <a (click)="start(data.id)">启动</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="suspend(data.id)">挂起</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="destroy(data.id)">删除</a>
+            <br>
+            <a (click)="stop(data.id)">关闭</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="resume(data.id)">恢复</a>
+        </td>
     </tr>
-  </tbody>
+    </tbody>
 </nz-table>
