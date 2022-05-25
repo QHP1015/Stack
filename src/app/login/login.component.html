@@ -2,9 +2,9 @@
     <h1 nz-typography>登陆</h1>
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
         <nz-form-item>
-            <nz-form-control nzErrorTip="Please input your username!">
+            <nz-form-control nzErrorTip="Please input your name!">
                 <nz-input-group nzPrefixIcon="user">
-                    <input type="text" nz-input formControlName="username" placeholder="Username"/>
+                    <input type="text" nz-input formControlName="name" placeholder="name"/>
                 </nz-input-group>
             </nz-form-control>
         </nz-form-item>
@@ -31,7 +31,7 @@
                                     用户名
                                 </nz-form-label>
                                 <nz-form-control >
-                                    <input nz-input id="username" formControlName="username"/>
+                                    <input nz-input id="name" formControlName="name"/>
                                 </nz-form-control>
                             </nz-form-item>
                             <nz-form-item>

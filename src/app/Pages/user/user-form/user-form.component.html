@@ -4,14 +4,14 @@
     <form nz-form [formGroup]="userForm" (ngSubmit)="submitForm()">
         <nz-form-item>
             <nz-form-label
-                nzFor="username"
+                nzFor="name"
                 nzRequired
                 nzTooltipTitle="你想输入的用户名"
             >
                 <span>用户名</span>
             </nz-form-label>
             <nz-form-control  nzErrorTip="请输入你的用户名!">
-                <input nz-input id="username" formControlName="username"/>
+                <input nz-input id="name" formControlName="name"/>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item>

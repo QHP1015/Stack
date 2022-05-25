@@ -17,11 +17,11 @@ export class LoginService {
     constructor(private http: HttpClient) {
     }
 
-    login(username: string, password: string): Observable<string> {
-        const options = {username, password};
+    login(name: string, password: string): Observable<string> {
+        const options = {name, password};
         return this.http.post<string>(this.loginUrl, options)
             .pipe(
-                catchError(this.handleError('login', username))
+                catchError(this.handleError('login', name))
             );
     }
 

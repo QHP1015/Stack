@@ -34,7 +34,7 @@ export class UserFormComponent implements OnInit {
             }
         }
         console.log(123)
-        this.userService.addUser(this.userForm.value.username, this.userForm.value.password, this.userForm.value.email).subscribe(status => this.onSuccess(status))
+        this.userService.addUser(this.userForm.value.name, this.userForm.value.password, this.userForm.value.email).subscribe(status => this.onSuccess(status))
     }
 
     onSuccess(statue: number) {
@@ -49,7 +49,7 @@ export class UserFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.userForm = this.fb.group({
-            username: ['', [Validators.required]],
+            name: ['', [Validators.required]],
             email: ['', [Validators.email]],
             password: ['', [Validators.required]],
         });

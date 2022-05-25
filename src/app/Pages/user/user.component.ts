@@ -60,7 +60,7 @@ export class UserComponent implements OnInit {
         this.user = data
         this.userForm = this.fb.group({
             id: [this.user.id, [Validators.required]],
-            username: [this.user.name],
+            name: [this.user.name],
             password: ['123456', ],
             email: [this.user.email, ],
             enabled: [this.user.enabled,],
@@ -76,7 +76,7 @@ export class UserComponent implements OnInit {
                 return;
             }
         }
-        this.userService.modifyUser(this.userForm.value.username, this.userForm.value.email, this.userForm.value.id,
+        this.userService.modifyUser(this.userForm.value.name, this.userForm.value.email, this.userForm.value.id,
             this.userForm.value.password, this.userForm.value.enabled, this.userForm.value.domain_id,)
             .subscribe(result => this.searchData());
         console.log(123)

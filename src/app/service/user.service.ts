@@ -30,30 +30,30 @@ export class UserService {
         id: string,
         email: string,
         password: string,
-        username: string,
+        name: string,
         enabled: string,
         domain_id: string
     ): Observable<any> {
-        const options = {username, email, id, password, enabled, domain_id};
+        const options = {name, email, id, password, enabled, domain_id};
         console.log(options);
         return this.http.post(`${this.userUrl}update`, options);
     }
 
     modifyPassword(
-        username: string,
+        name: string,
         email: string,
     ): Observable<any> {
-        const options = {username, email};
+        const options = {name, email};
         console.log(options)
         return this.http.post(`${this.userUrl}reset`, options);
     }
 
     addUser(
-        username: string,
+        name: string,
         password: string,
         email: string,
     ): Observable<any> {
-        const options = {username, password, email};
+        const options = {name, password, email};
         return this.http.post(`${this.userUrl}add`, options);
     }
 

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
             }
         }
         console.log(123);
-        this.loginService.login(this.validateForm.value.username, this.validateForm.value.password)
+        this.loginService.login(this.validateForm.value.name, this.validateForm.value.password)
             .subscribe(result => this.loginSuccess(result));
     }
 
@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
             console.log('result: ' + JSON.stringify(result));
             const data = result.data;
             const token = data.token;
-            const username = data.username;
+            const name = data.name;
             const id = data.id;
 
             sessionStorage.setItem('token', token);
-            sessionStorage.setItem('username', username);
+            sessionStorage.setItem('name', name);
             sessionStorage.setItem('id', id);
             this.router.navigate(['/home/index']);
         } else {
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
                 return;
             }
         }
-        this.userService.modifyPassword(this.passwordForm.value.username, this.passwordForm.value.email).subscribe(result => this.ResetSuccess(result.status))
+        this.userService.modifyPassword(this.passwordForm.value.name, this.passwordForm.value.email).subscribe(result => this.ResetSuccess(result.status))
         console.log(123)
     }
 
@@ -81,15 +81,15 @@ export class LoginComponent implements OnInit {
 
     ngOnInit(): void {
         sessionStorage.removeItem('token');
-        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('name');
         sessionStorage.removeItem('id');
         this.validateForm = this.fb.group({
-            username: ['', [Validators.required]],
+            name: ['', [Validators.required]],
             password: ['', [Validators.required]],
             remember: [true]
         });
         this.passwordForm = this.fb.group({
-            username: [''],
+            name: [''],
             email: [''],
         });
     }
