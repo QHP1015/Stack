@@ -56,13 +56,15 @@ export class LoginComponent implements OnInit {
                 return;
             }
         }
-        this.userService.modifyPassword(this.passwordForm.value.name, this.passwordForm.value.email).subscribe(result => this.ResetSuccess(result.status))
+        this.userService.modifyPassword(this.passwordForm.value.name, this.passwordForm.value.email).subscribe(result => this.ResetSuccess(result))
         console.log(123)
     }
 
-    ResetSuccess(status: number): void {
-        if (status === 0)
+    ResetSuccess(result: any): void {
+        if (result.status === 0)
             alert("重置成功")
+        else
+            alert(result.msg)
     }
 
     handleOk(): void {
